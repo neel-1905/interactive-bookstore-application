@@ -41,7 +41,7 @@ const Navbar = () => {
                 Books
               </NavLink>
 
-              {!isLoggedIn ? (
+              {!isLoggedIn || !user ? (
                 <NavLink
                   to={`/login`}
                   className={`nav-link ${navStyles.navLink}`}

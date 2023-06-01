@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import loginStyles from "../Styles/login.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ const Login = () => {
     password: null,
   });
 
-  const { user } = useSelector((state) => state.auth);
+  const { user, isLoggedIn } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,6 +19,12 @@ const Login = () => {
     setDetails({ ...details, [e.target.name]: e.target.value });
     console.log(details);
   };
+
+  useEffect(() => {
+    if (user && isLoggedIn) {
+      navigate("/");
+    }
+  });
 
   const handleLogin = async () => {
     try {
@@ -41,7 +47,7 @@ const Login = () => {
 
       dispatch(login(result.username));
       localStorage.setItem("token", result.token);
-      alert(`User Logged In! ${user}`);
+      alert(`User Logged In!`);
 
       navigate("/");
     } catch (error) {

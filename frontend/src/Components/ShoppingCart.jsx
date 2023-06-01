@@ -6,13 +6,23 @@ import {
   removeBook,
   updateTotalAmt,
 } from "../Redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 import cartStyle from "../Styles/cart.module.css";
 import { ToastContainer, toast } from "react-toastify";
 
 const ShoppingCart = () => {
   const { products, total } = useSelector((state) => state.cart);
+  const { user, isLoggedIn } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   console.log(products);
+
+  useEffect(() => {
+    if (!user || !isLoggedIn) {
+      alert(`Login to access cart ${isLoggedIn}`);
+      navigate("/books");
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(updateTotalAmt());
