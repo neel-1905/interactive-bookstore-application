@@ -56,6 +56,12 @@ const cartSlice = createSlice({
 
       state.total = totalAmt;
     },
+
+    emptyCart: (state, action) => {
+      state.products = [];
+      state.total = 0;
+      state.totalProducts = 0;
+    },
   },
 });
 
@@ -66,4 +72,5 @@ export const {
   decreaseAmount,
   removeBook,
   updateTotalAmt,
+  emptyCart,
 } = cartSlice.actions;

@@ -45,7 +45,7 @@ const BookCard = (props) => {
             <p className="card-text mt-2 mb-1">
               <b>₹{props.price}</b>
             </p>
-            <p className="card-text mt-2 mb-1">In Stock: {props.stock}</p>
+            {/* <p className="card-text mt-2 mb-1">In Stock: {props.stock}</p> */}
           </div>
           <button onClick={() => handleAdd(props)} className="btn btn-primary">
             Add to Cart
