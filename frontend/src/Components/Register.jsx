@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import loginStyles from "../Styles/login.module.css";
 
-const Login = () => {
+const Register = () => {
   return (
     <>
       <div
@@ -30,11 +30,22 @@ const Login = () => {
               id="password"
             />
           </div>
+
+          <div className="mb-3">
+            <label htmlFor="confirmPassword" className="form-label">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              className={`form-control ${loginStyles.textInputs}`}
+              id="confirmPassword"
+            />
+          </div>
           <p>
-            <Link to={`/register`}>Register</Link>
+            <Link>Register</Link>
           </p>
           <button type="submit" className="btn btn-primary w-100">
-            Login
+            Register
           </button>
         </form>
       </div>
@@ -42,4 +53,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

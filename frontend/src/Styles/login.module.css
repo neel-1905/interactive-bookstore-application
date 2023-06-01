@@ -1,0 +1,12 @@
+.mainDiv {
+  height: 100dvh;
+}
+
+.textInputs {
+  border: 1px solid black;
+}
+
+.formDiv {
+  box-shadow: 0 0 5px 2px black;
+  border-radius: 10px;
+}

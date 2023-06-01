@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import bookStyles from "../Styles/books.module.css";
+// import bookStyles from "../Styles/books.module.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BookCard from "./BookCard";
@@ -8,7 +8,7 @@ const Books = () => {
   const [books, setBooks] = useState([]);
   const [genre, setGenre] = useState("All");
   const [search, setSearch] = useState(null);
-  const { products, totalProducts } = useSelector((state) => state.cart);
+  const { totalProducts } = useSelector((state) => state.cart);
 
   const genreList = [
     { value: "Fiction", text: "Fiction" },
@@ -57,13 +57,39 @@ const Books = () => {
     }
   };
 
+  useEffect(() => {
+    const handleGenreChange = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:5000/books/findByGenre?genre=${genre}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const result = await res.json();
+
+        if (!result?.isSuccess) {
+          throw new Error(result.error);
+        }
+
+        setBooks(result?.books);
+      } catch (error) {
+        alert(error);
+      }
+    };
+
+    handleGenreChange();
+  }, [genre]);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-primary-subtle">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
+          <Link to={`/`} className="navbar-brand fw-bold">
+            The Book Store
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -105,7 +131,8 @@ const Books = () => {
 
               <Link
                 to={`/cart`}
-                className="nav-link bg-primary rounded text-white"
+                // className="nav-link bg-primary w-25 text-center mt-2 mt-md-0 mt-lg-0 rounded text-white"
+                className="nav-link bg-primary w-25 text-center text-white rounded"
                 aria-current="page"
                 href="#"
               >
@@ -119,11 +146,13 @@ const Books = () => {
       {/* Genre select */}
       <div className="m-2 d-flex justify-content-end ">
         <select
-          class="form-select border border-dark rounded"
+          className="form-select border border-dark rounded"
           aria-label="Disabled select example"
           style={{ maxWidth: "200px" }}
           value={genre}
           onChange={(e) => {
+            setGenre(e.target.value);
+            // console.log(genre);
             // handleGenreChange();
           }}
         >

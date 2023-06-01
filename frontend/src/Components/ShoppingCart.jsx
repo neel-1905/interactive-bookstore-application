@@ -31,7 +31,9 @@ const ShoppingCart = () => {
       <h1 className="text-center">Items Cart</h1>
 
       {total === 0 ? (
-        <h1>Cart is Empty</h1>
+        <div className="d-flex justify-content-center align-items-center">
+          <h3 className="text-center">Cart is Empty</h3>
+        </div>
       ) : (
         <div className="d-flex mt-5 flex-column flex-grow-2 align-items-center vh-100">
           {products.map((item, index) => (
