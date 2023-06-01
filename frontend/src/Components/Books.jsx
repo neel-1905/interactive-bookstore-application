@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 // import bookStyles from "../Styles/books.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BookCard from "./BookCard";
 
@@ -10,14 +10,15 @@ const Books = () => {
   const [search, setSearch] = useState(null);
   const { totalProducts } = useSelector((state) => state.cart);
 
-  const navigate = useNavigate();
-
   const genreList = [
     { value: "Fiction", text: "Fiction" },
     { value: "Horror", text: "Horror" },
     { value: "Romance", text: "Romance" },
     { value: "SciFi", text: "SciFi" },
     { value: "Adventure", text: "Adventure" },
+    { value: "Autobiography", text: "Autobiography" },
+    { value: "History", text: "History" },
+    { value: "Thriller", text: "Thriller" },
   ];
 
   useEffect(() => {
