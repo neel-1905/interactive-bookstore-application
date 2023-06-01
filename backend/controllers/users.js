@@ -6,13 +6,17 @@ const registerUser = async (req, res) => {
   const { username, password } = req.body;
   try {
     if (!username || !password) {
-      return res.status(400).json({ message: "Please fill all the details" });
+      return res
+        .status(400)
+        .json({ message: "Please fill all the details", isSuccess: false });
     }
 
     const user = await User.findOne({ username });
 
     if (user) {
-      return res.status(409).json({ message: "User already exists" });
+      return res
+        .status(409)
+        .json({ message: "User already exists", isSuccess: false });
     }
 
     const salt = await bcrypt.genSalt();
@@ -24,9 +28,11 @@ const registerUser = async (req, res) => {
     });
 
     await newUser.save();
-    return res.status(201).json({ message: "User Registered", newUser });
+    return res
+      .status(201)
+      .json({ message: "User Registered", newUser, isSuccess: true });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message, isSuccess: false });
   }
 };
 
@@ -38,7 +44,10 @@ const login = async (req, res) => {
     if (!username || !password) {
       return res
         .status(400)
-        .json({ error: "Body is missing some of the required properties" });
+        .json({
+          error: "Body is missing some of the required properties",
+          isSuccess: false,
+        });
     }
 
     //Checking if user is registered or not
@@ -76,7 +85,7 @@ const login = async (req, res) => {
       });
     }
   } catch (err) {
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message, isSuccess: false });
   }
 };
 
