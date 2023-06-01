@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 // import bookStyles from "../Styles/books.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import BookCard from "./BookCard";
 
@@ -9,6 +9,8 @@ const Books = () => {
   const [genre, setGenre] = useState("All");
   const [search, setSearch] = useState(null);
   const { totalProducts } = useSelector((state) => state.cart);
+
+  const navigate = useNavigate();
 
   const genreList = [
     { value: "Fiction", text: "Fiction" },
@@ -23,6 +25,7 @@ const Books = () => {
       const res = await fetch("http://localhost:5000/books/getAllBooks", {
         headers: {
           "Content-Type": "application/json",
+          // token: localStorage.getItem("token"),
         },
       });
 
@@ -43,6 +46,7 @@ const Books = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            // token: localStorage.getItem("token"),
           },
         }
       );
@@ -65,6 +69,7 @@ const Books = () => {
           {
             headers: {
               "Content-Type": "application/json",
+              // token: localStorage.getItem("token"),
             },
           }
         );

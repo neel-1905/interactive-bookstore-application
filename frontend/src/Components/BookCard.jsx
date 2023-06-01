@@ -10,11 +10,15 @@ const BookCard = (props) => {
   const dispatch = useDispatch();
 
   const handleAdd = (book) => {
-    dispatch(addToCart(book));
-    toast("Added to cart", {
-      position: "bottom-right",
-      autoClose: 3000,
-    });
+    if (localStorage.getItem("token") && localStorage.getItem("user")) {
+      dispatch(addToCart(book));
+      toast("Added to cart", {
+        position: "bottom-right",
+        autoClose: 3000,
+      });
+    } else {
+      alert("Please login first");
+    }
   };
 
   return (

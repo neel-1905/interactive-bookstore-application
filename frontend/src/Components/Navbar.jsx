@@ -1,8 +1,13 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import navStyles from "../Styles/navbar.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../Redux/authSlice";
 
 const Navbar = () => {
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-secondary">
@@ -35,12 +40,22 @@ const Navbar = () => {
               >
                 Books
               </NavLink>
-              <NavLink
-                to={`/login`}
-                className={`nav-link ${navStyles.navLink}`}
-              >
-                Login
-              </NavLink>
+
+              {!isLoggedIn ? (
+                <NavLink
+                  to={`/login`}
+                  className={`nav-link ${navStyles.navLink}`}
+                >
+                  Login
+                </NavLink>
+              ) : (
+                <Link
+                  onClick={() => dispatch(logout())}
+                  className={`nav-link ${navStyles.navLink}`}
+                >
+                  Logout
+                </Link>
+              )}
             </div>
           </div>
         </div>

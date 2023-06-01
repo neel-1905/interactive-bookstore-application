@@ -6,6 +6,8 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
 import ShoppingCart from "./Components/ShoppingCart";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/books" element={<Books />} />
             <Route path="/cart" element={<ShoppingCart />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </Provider>
       </Router>

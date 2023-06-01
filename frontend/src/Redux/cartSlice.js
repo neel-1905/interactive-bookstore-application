@@ -47,11 +47,10 @@ const cartSlice = createSlice({
     },
 
     updateTotalAmt: (state, action) => {
-      let quantity = 0;
       let totalAmt = 0;
 
       state.products.forEach((elem) => {
-        quantity += elem.quantity;
+        // quantity += elem.quantity;
         totalAmt += elem.quantity * elem.price;
       });
 
