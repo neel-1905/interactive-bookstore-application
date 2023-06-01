@@ -42,12 +42,10 @@ const login = async (req, res) => {
 
     //Checking for empty values
     if (!username || !password) {
-      return res
-        .status(400)
-        .json({
-          error: "Body is missing some of the required properties",
-          isSuccess: false,
-        });
+      return res.status(400).json({
+        error: "Body is missing some of the required properties",
+        isSuccess: false,
+      });
     }
 
     //Checking if user is registered or not
@@ -62,7 +60,7 @@ const login = async (req, res) => {
     const passwordIsTrue = await bcrypt.compare(password, user?.password);
 
     //Generating token
-    const secretkey = "someprivatekey";
+    const secretkey = process.env.SECRET;
     const token = jwt.sign(
       { _id: user?._id, name: user?.username },
       secretkey,

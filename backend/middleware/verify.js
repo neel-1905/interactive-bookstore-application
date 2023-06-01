@@ -7,7 +7,7 @@ const verify = async (req, res, next) => {
     return res.status(401).json({ message: "You are not authorized" });
   }
 
-  const secretkey = "someprivatekey";
+  const secretkey = process.env.SECRET;
 
   try {
     const verified = jwt.verify(token, secretkey);

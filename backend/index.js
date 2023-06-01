@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 const bookRoutes = require("./routes/books");
 const userRoutes = require("./routes/users");
 const cors = require("cors");
+const dotenv = require("dotenv");
 
+dotenv.config();
 app.use(express.json());
 app.use(cors());
 
@@ -14,9 +16,7 @@ app.use("/users", userRoutes);
 
 const connection = async () => {
   await mongoose
-    .connect(
-      "mongodb+srv://neel1905:neel1905@cluster0.2mdg4wr.mongodb.net/bookstore?retryWrites=true&w=majority"
-    )
+    .connect(process.env.MONGO)
     .then(console.log("Connected to database"))
     .catch((err) => console.log(err));
 };
