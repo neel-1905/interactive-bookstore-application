@@ -40,7 +40,9 @@ const BookCard = (props) => {
           {/* <p className={`card-text ${bookStyles.description}`}>
                 {item.description}
               </p> */}
-          <p className="card-text">A Book by {props.author}</p>
+          <p className={`card-text ${bookcardStyle.author}`}>
+            A Book by {props.author}
+          </p>
           <div className="d-flex justify-content-between">
             <p className="card-text mt-2 mb-1">
               <b>₹{props.price}</b>
