@@ -3,12 +3,14 @@ const app = express();
 const port = 5000;
 const mongoose = require("mongoose");
 const bookRoutes = require("./routes/books");
+const userRoutes = require("./routes/users");
 const cors = require("cors");
 
 app.use(express.json());
 app.use(cors());
 
 app.use("/books", bookRoutes);
+app.use("/users", userRoutes);
 
 const connection = async () => {
   await mongoose

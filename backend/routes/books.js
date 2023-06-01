@@ -5,11 +5,12 @@ const {
   findByName,
   findByGenre,
 } = require("../controllers/books");
+const verify = require("../middleware/verify");
 const router = express.Router();
 
-router.post("/addBook", addBook);
-router.get("/getAllBooks", getAllBooks);
-router.get("/findByName", findByName);
-router.get("/findByGenre", findByGenre);
+router.post("/addBook", verify, addBook);
+router.get("/getAllBooks", verify, getAllBooks);
+router.get("/findByName", verify, findByName);
+router.get("/findByGenre", verify, findByGenre);
 
 module.exports = router;
