@@ -104,7 +104,12 @@ const ShoppingCart = () => {
             style={{ width: "45rem" }}
           >
             <h3>Total: ₹{total}</h3>
-            <button className="btn btn-success p-2 fs-5">Place Order</button>
+            <button
+              className="btn btn-success p-2 fs-5"
+              onClick={() => navigate("/checkout")}
+            >
+              Checkout
+            </button>
           </div>
         </div>
       )}
