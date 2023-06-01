@@ -36,8 +36,6 @@
 
 ## Usage
 
-### Important
-
 - To add books to the database, I have created an api. You can add books using postman or any other api platform
 
 - Install all the libraries and packages used in the project.
