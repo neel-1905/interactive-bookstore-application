@@ -10,7 +10,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-secondary">
+      <nav
+        className="navbar navbar-expand-lg position-absolute w-100 bg-primary-subtle"
+        style={{ zIndex: "2" }}
+      >
         <div className="container-fluid">
           <NavLink className="navbar-brand fw-bold" href="#">
             The Book Store
