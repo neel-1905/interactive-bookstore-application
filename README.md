@@ -36,7 +36,8 @@
 
 ## Usage
 
-- To add books to the database, I have created an api. You can add books using postman or any other api platform
+- To add books to the database, I have created an api. You can add books using postman or any other api platform.
+  Use http://localhost:5000/books/addBook to insert a book. Be sure to use a login token in the header. For inserting images i have used image links from the net.
 
 - Install all the libraries and packages used in the project.
 
